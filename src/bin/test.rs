@@ -10,7 +10,7 @@ use deno_runtime::worker::WorkerOptions;
 
 #[tokio::main]
 async fn main() -> Result<(), AnyError> {
-  let js_path = Path::new("example.js");
+  let js_path = Path::new(env!("CARGO_MANIFEST_DIR")).join("example.js");
   let main_module = ModuleSpecifier::from_file_path(js_path).unwrap();
   let mut worker = MainWorker::bootstrap_from_options(
     main_module.clone(),
